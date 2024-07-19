@@ -2,7 +2,7 @@ import json, datetime
 import csv
 
 # Carregar o arquivo JSON com codificação UTF-8
-with open('C:\\Users\\michael\\Downloads\\doi-2024-07-01-2024-07-17.json', 'r', encoding='utf-8') as file:
+with open('doi-2024-07-01-2024-07-17.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # Inicializar contadores
