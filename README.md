@@ -11,6 +11,7 @@ This code processes a JSON file containing declarations and generates two CSV re
 # File structure
 - `app.py`: The main Python script that processes the JSON file and generates the CSV reports.
 - `doi.json`: The input JSON file containing the declarations.
+- `layout-doiweb.json`: The schema JSON file containing the declarations [(Layout DOI)](https://doi.rfb.gov.br/api/layout-doiweb.json).
 - `relatorio_modificacoes.csv`: CSV output file for modifications.
 - `relatorio_pendencias.csv`: CSV output file for pending issues.
 - `doi_modified.json`: The JSON file updated with modifications.
@@ -34,6 +35,8 @@ This code processes a JSON file containing declarations and generates two CSV re
 - This application was made based on the issues that "I" found when sending the JSON, it does not cover "ALL" possible issues, so use it at your own risk.
 - This project is simple and was rushed (lol) and to meet our temporary demand, the logic can and should be improved, feel free to adjust and then make a pull request.
 
+
+
 # Author
-- Michael Raphael
-- Contact: https://github.com/michaelrafaelrs/
+- Michael Rafael
+- Contact: <a href="https://github.com/michaelrafaelrs"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="20" height="20"></a>

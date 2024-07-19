@@ -1,6 +1,6 @@
 *.csv
 *.json
-
+!layout-doiweb.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
