@@ -10,6 +10,7 @@ This code processes a JSON file containing declarations and generates two CSV re
 
 # File structure
 - `app.py`: The main Python script that processes the JSON file and generates the CSV reports.
+- `gera_doi_ficitica.py`: The Python script that generates the doi_ficticia.json for teste.
 - `doi.json`: The input JSON file containing the declarations.
 - `layout-doiweb.json`: The schema JSON file containing the declarations [(Layout DOI)](https://doi.rfb.gov.br/api/layout-doiweb.json).
 - `relatorio_modificacoes.csv`: CSV output file for modifications.

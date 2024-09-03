@@ -2,7 +2,7 @@ import json, datetime
 import csv
 
 # Carregar o arquivo JSON com codificação UTF-8
-with open('doi-2024-07-01-2024-07-17.json', 'r', encoding='utf-8') as file:
+with open(r'C:\Users\michael\Downloads\checklists\doi-2024-08-01-2024-08-29 (1).json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # Inicializar contadores
@@ -52,6 +52,8 @@ with open('relatorio_modificacoes.csv', 'w', newline='', encoding='utf-8') as fi
             else:
                 declaracao['cep'] = '00000000'
                 modificacoes.append('cep adicionado "00000000"')
+            
+            
 
             # Verificações de pendências conforme as regras fornecidas
             # Relatório de Pendências
@@ -79,14 +81,15 @@ with open('relatorio_modificacoes.csv', 'w', newline='', encoding='utf-8') as fi
                          # ainda falta medir NI
                         if 'ni' in pessoa and len(pessoa['ni']) != 14 and "indicadorConjuge" not in pessoa:
                             # print(f'Parte {pessoa.get("ni")} NÃO TEM INDICAÇÃO SE possui conjuge')
-                            pendencias.append(f'Parte {pessoa.get("ni")}, NÃO TEM INDICAÇÃO SE possui conjuge')
+                            pendencias.append(f'Parte ({parte}) - {pessoa.get("ni")}, NÃO TEM INDICAÇÃO SE possui conjuge')
             
                         if pessoa.get('indicadorConjuge') and not pessoa.get('regimeBens'):
-                            pendencias.append(f'Parte {pessoa.get("ni")} possui conjuge mas não foi informado regime de bens')
+                            pendencias.append(f'Parte ({parte}) - {pessoa.get("ni")} possui conjuge mas não foi informado regime de bens')
                             #print(f'Parte {pessoa.get("ni")}, possui conjuge mas não foi informado regime de bens')
+                            #print(f'Parte {parte}')
 
                         if pessoa.get('indicadorEspolio') and not pessoa.get('cpfInventariante'):
-                            pendencias.append(f'Parte {pessoa.get("ni")} é espólio mas não foi informado CPF do inventariante')
+                            pendencias.append(f'Parte ({parte}) - {pessoa.get("ni")} é espólio mas não foi informado CPF do inventariante')
                             #print(f'Parte {pessoa.get("ni")} é espólio mas não foi informado CPF do inventariante')
 
                         # Verifica se o valor do percentual das partes
@@ -99,7 +102,7 @@ with open('relatorio_modificacoes.csv', 'w', newline='', encoding='utf-8') as fi
                                 percen_transmitentes += valor_percentual
                                 #print(f'Matricula = {declaracao.get("matricula")} -- {pessoa.get("ni")} é = {parte} / Percentual = {pessoa.get("participacao")}  // Percentual Transmitentes = {percen_transmitentes}')
                         else:
-                            pendencias.append(f'Parte {pessoa.get("ni")} não informou percentual')
+                            pendencias.append(f'Parte ({parte}) - {pessoa.get("ni")} não informou percentual')
                         
             # Verificar se o percentual das partes é maior que 100
             if percen_alienantes > 100:
@@ -138,7 +141,13 @@ with open('relatorio_modificacoes.csv', 'w', newline='', encoding='utf-8') as fi
                 declaracao.pop('valorOperacaoImobiliaria', None)
                 modificacoes.append('Valor da operação imobiliária removido quando indicadorNaoConstaValorOperacaoImobiliaria é true')
 
-            if not declaracao.get('tipoLogradouro'):
+            if declaracao.get('destinacao') == '3':
+                print(f'Matricula: {declaracao.get('matricula')} == Destinação= {declaracao.get("destinacao")}  ||  tipo logradouro = {declaracao.get('tipoLogradouro')} '  )
+            
+            print(f'Matricula: {declaracao.get('matricula')} == Destinação: {declaracao.get('destinacao')}' )
+
+
+            if not declaracao.get('tipoLogradouro') and declaracao.get('destinacao') != '3':
                 pendencias.append('Tipo de logradouro nulo')
                 # print(f'O tipo de logradouro é nulo para a matricula: {declaracao["matricula"]}')
 
